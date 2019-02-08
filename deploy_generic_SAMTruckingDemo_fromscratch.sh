@@ -167,10 +167,10 @@ curl -X POST -F 'name=truck_events_avro' -F 'description=ver1' -F 'file=@./schem
 curl -X POST -F 'name=truck_speed_events_avro' -F 'description=ver1' -F 'file=@./schema_TruckSpeedEvents.avsc' http://localhost:7788/api/v1/schemaregistry/schemas/truck_speed_events_avro/versions/upload
 
 echo "Creating Kafka topics..."
-/usr/hdp/current/kafka-broker/bin/kafka-topics.sh --create --zookeeper ${host}:2181 --replication-factor 1 --partition 1 --topic raw-truck_events_avro
-/usr/hdp/current/kafka-broker/bin/kafka-topics.sh --create --zookeeper ${host}:2181 --replication-factor 1 --partition 1 --topic raw-truck_speed_events_avro
-/usr/hdp/current/kafka-broker/bin/kafka-topics.sh --create --zookeeper ${host}:2181 --replication-factor 1 --partition 1 --topic truck_events_avro
-/usr/hdp/current/kafka-broker/bin/kafka-topics.sh --create --zookeeper ${host}:2181 --replication-factor 1 --partition 1 --topic truck_speed_events_avro
+/usr/hdp/current/kafka-broker/bin/kafka-topics.sh --create --zookeeper ${host}:2181 --replication-factor 1 --partitions 1 --topic raw-truck_events_avro
+/usr/hdp/current/kafka-broker/bin/kafka-topics.sh --create --zookeeper ${host}:2181 --replication-factor 1 --partitions 1 --topic raw-truck_speed_events_avro
+/usr/hdp/current/kafka-broker/bin/kafka-topics.sh --create --zookeeper ${host}:2181 --replication-factor 1 --partitions 1 --topic truck_events_avro
+/usr/hdp/current/kafka-broker/bin/kafka-topics.sh --create --zookeeper ${host}:2181 --replication-factor 1 --partitions 1 --topic truck_speed_events_avro
 /usr/hdp/current/kafka-broker/bin/kafka-topics.sh --zookeeper ${host}:2181 --list
 
 while ! echo exit | nc localhost 16010; do echo "waiting for Hbase master to be fully up..."; sleep 10; done
